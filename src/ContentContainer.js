@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Grid, Row, Col, Button } from 'react-bootstrap';
+import React from 'react';
+import { Grid, Row, Col } from 'react-bootstrap';
 import './bootstrap.min.css';
 import './App.css';
 

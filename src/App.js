@@ -5,9 +5,23 @@ import './App.css';
 import { ContentContainer } from './ContentContainer';
 import { SearchBar } from './SearchBar';
 import { AddButton } from './AddButton';
+import { Popup } from './Popup';
 
 class App extends Component {
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      showPopup: false
+    };
+
+    this.handlePopup = this.handlePopup.bind(this);
+  }
+
+  handlePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  }
 
   render() {
     return (
@@ -19,13 +33,16 @@ class App extends Component {
           <SearchBar />
         </Row>
         <Row>
-          <AddButton />
+          <AddButton onClick={this.handlePopup}/>
         </Row>
         <Row>
           <ContentContainer />
         </Row>
+        {this.state.showPopup ?
+          <Popup text='Add a Recipe'closePopup={this.handlePopup}/>
+          : null
+        }
       </Grid>
-
     );
   }
 }

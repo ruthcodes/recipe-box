@@ -7,6 +7,3 @@ import Popup from 'react-popup';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
-
-ReactDOM.render(<Popup />, document.getElementById('root'));
-registerServiceWorker();
