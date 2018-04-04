@@ -1,28 +1,44 @@
-.App {
+.container{
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.recipeContain{
+  background: #aabbcc;
+  border-radius: 3px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.recipeRow{
+  padding: 25px;
+  text-align: center;
 }
 
-.App-title {
-  font-size: 1.5em;
+.recipeCol{
+  text-align: center;
+  background-color: #ddf2e8;
+  border: 1px solid #f4e9d8;
+  border-radius: 3px;
+  padding: 10px;
 }
 
-.App-intro {
-  font-size: large;
+h1{
+  margin: 25px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.search{
+  margin: 15px;
+}
+
+input{
+  border-radius: 3px;
+}
+
+.btn{
+  height: 26px;
+  margin: 0 auto;
+}
+
+.add{
+  margin-bottom:20px;
+  height: 35px;
+  width: 35px;
 }

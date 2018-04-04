@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Grid, Row, Col } from 'react-bootstrap';
+import './bootstrap.min.css';
 import './App.css';
+import { ContentContainer } from './ContentContainer';
+import { SearchBar } from './SearchBar';
+import { AddButton } from './AddButton';
 
 class App extends Component {
+  
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Grid>
+        <Row>
+          <Col xs={12} sm={12} md={12} lg={12} xl={12}><h1>Recipe Box</h1></Col>
+        </Row>
+        <Row>
+          <SearchBar />
+        </Row>
+        <Row>
+          <AddButton />
+        </Row>
+        <Row>
+          <ContentContainer />
+        </Row>
+      </Grid>
+
     );
   }
 }
