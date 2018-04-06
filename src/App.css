@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+body{
+  background: #ad5389;
+  background: -webkit-linear-gradient(to top, #3c1053, #ad5389);
+  background: linear-gradient(to top, #3c1053, #ad5389);
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
 .container{
   text-align: center;
   font-family: 'Nunito', sans-serif;
@@ -13,8 +21,9 @@
 .recipeCol{
   text-align: center;
   background-color: #ddf2e8;
-  border: 1px solid #f4e9d8;
+  border: 3px solid black;
   border-radius: 3px;
+  padding: 10px;
 }
 
 h1{
@@ -115,6 +124,11 @@ form > input{
 
 .popFoot > button{
   margin: 3px;
+}
+
+.jumbotron{
+  background-color: black;
+  color: #ddf2e8;
 }
 
 @media (max-width:500px) {

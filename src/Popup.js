@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
+import { Form } from './Form';
 import './bootstrap.min.css';
 import './App.css';
 
@@ -12,13 +13,7 @@ export function Popup(props) {
               <Col className="popHead" xs={12} sm={12} md={12} lg={12} xl={12}><h2>{props.text}</h2></Col>
             </Row>
             <Row>
-              <form>
-                Title:<br/>
-                <input type="text" name="recipeTitle"/>
-                <br/>
-                Ingredients:<br/>
-                <textarea type="text" name="recipeIngredients"/>
-              </form>
+              <Form />
             </Row>
             <Row>
               <Col className="popFoot ok" xs={0} sm={6} md={8} lg={8} xl={10}></Col>
