@@ -13,7 +13,7 @@ export function Popup(props) {
               <Col className="popHead" xs={12} sm={12} md={12} lg={12} xl={12}><h2>{props.text}</h2></Col>
             </Row>
             <Row>
-              <Form name={props.name} ingredients={props.ingredients} />
+              <Form name={props.name} ingredients={props.ingredients} onChange={props.onChange} />
             </Row>
             <Row>
               <Col className="popFoot ok" xs={0} sm={6} md={8} lg={8} xl={10}></Col>
