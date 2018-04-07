@@ -16,7 +16,8 @@ class App extends Component {
       ingredients: []
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleName = this.handleName.bind(this);
+    this.handleIngredients = this.handleIngredients.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePopup = this.handlePopup.bind(this);
   }
@@ -43,21 +44,32 @@ class App extends Component {
     console.log("ingredients are: " + this.state.ingredients);
   }
 
-  handleSubmit(event) {
-
-
+  handleName(event){
     var name = this.state.name.slice();
-    name.push(event.target.name);
-    var ingredients = this.state.ingredients.slice();
-    ingredients.push(event.target.ingredients);
-
+    name.push(event.target.value);
+    console.log("name: " + name);
     this.setState({
-      name: name,
+      name: name
+    });
+  }
+
+  handleIngredients(event){
+    var ingredients = this.state.ingredients.slice();
+    ingredients.push(event.target.value);
+    console.log("ingredients: " + ingredients);
+    this.setState({
       ingredients: ingredients
     });
+  }
 
-    console.log(this.state.name);
-    console.log(this.state.ingredients);
+  handleSubmit(event) {
+    console.log(event.target);
+    this.handleName(event);
+    this.handleIngredients(event);
+    this.handlePopup();
+    console.log("closing the popup");
+
+
     //this is where form adds to html (dangerously set) or deletes
     event.preventDefault();
   }
@@ -76,7 +88,7 @@ class App extends Component {
           <ContentContainer />
         </Row>
         {this.state.showPopup ?
-          <Popup text='Add a Recipe' closePopup={this.handlePopup} submitForm={this.handleSubmit} changeForm={this.handleChange} name={this.state.name} ingredients={this.state.ingredients}/>
+          <Popup text='Add a Recipe' closePopup={this.handlePopup} submitForm={this.handleSubmit} name={this.state.name} ingredients={this.state.ingredients}/>
           : null
         }
       </Grid>
