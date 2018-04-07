@@ -53,8 +53,11 @@ class App extends Component {
     this.setState({ name: newName }, function(){
       console.log(this.state.name);
     });
+
+    this.handlePopup();
     //this is where form adds to html (dangerously set) or deletes
     event.preventDefault();
+
   }
 
 
