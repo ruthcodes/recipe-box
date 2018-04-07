@@ -19,7 +19,8 @@ class App extends Component {
       counter: 0,
     };
 
-    this.handleChange =this.handleChange.bind(this);
+    this.handleChangeName =this.handleChangeName.bind(this);
+    this.handleChangeIngredients =this.handleChangeIngredients.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePopup = this.handlePopup.bind(this);
   }
@@ -30,19 +31,16 @@ class App extends Component {
     });
   }
 
-  addScore() {
-        const currentScores = this.state.scores;
-        const newScores = currentScores.concat(this.state.scoreInput);
-        this.setState({ scores: newScores }, function(){
-          console.log(this.state.scores);
-        });
 
-      }
-
-
-  handleChange(event){
+  handleChangeName(event){
     this.setState({
       nameInput: event.target.value
+    });
+  }
+
+  handleChangeIngredients(event){
+    this.setState({
+      ingredientsInput: event.target.value
     });
   }
 
@@ -50,8 +48,13 @@ class App extends Component {
   handleSubmit(event) {
     const current = this.state.name;
     const newName = current.concat(this.state.nameInput);
-    this.setState({ name: newName }, function(){
+
+    const currentIn = this.state.ingredients;
+    const newIn = currentIn.concat(this.state.ingredientsInput);
+
+    this.setState({ name: newName, ingredients: newIn }, function(){
       console.log(this.state.name);
+      console.log(this.state.ingredients);
     });
 
     this.handlePopup();
@@ -74,7 +77,7 @@ class App extends Component {
           <ContentContainer />
         </Row>
         {this.state.showPopup ?
-          <Popup text='Add a Recipe' submitForm={this.handleSubmit} onChange={this.handleChange}/>
+          <Popup text='Add a Recipe' submitForm={this.handleSubmit} nameChange={this.handleChangeName} ingredientsChange={this.handleChangeIngredients}/>
           : null
         }
       </Grid>
