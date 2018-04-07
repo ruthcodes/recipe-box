@@ -6,10 +6,10 @@ export function Form(props) {
     return (
       <form onSubmit={props.handleSubmit}>
         Title:<br/>
-        <input type="text" data="name" onChange={props.onChange}/>
+        <input type="text" onChange={props.onChange}/>
         <br/>
         Ingredients:<br/>
-        <textarea type="text" data="ingredients" onChange={props.onChange}/>
+        <textarea type="text" />
       </form>
     );
 }

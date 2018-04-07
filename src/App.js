@@ -12,14 +12,14 @@ class App extends Component {
     super(props);
     this.state = {
       showPopup: false,
-      name: ["icecream", "CHEESE"],
-      ingredients: ["sugar, cream, vanilla", "milk"],
+      name: [],
+      nameInput : '',
+      ingredients: [],
+      ingredientsInput: '',
       counter: 0,
     };
 
     this.handleChange =this.handleChange.bind(this);
-    this.handleName = this.handleName.bind(this);
-    this.handleIngredients = this.handleIngredients.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePopup = this.handlePopup.bind(this);
   }
@@ -30,46 +30,29 @@ class App extends Component {
     });
   }
 
+  addScore() {
+        const currentScores = this.state.scores;
+        const newScores = currentScores.concat(this.state.scoreInput);
+        this.setState({ scores: newScores }, function(){
+          console.log(this.state.scores);
+        });
+
+      }
+
+
   handleChange(event){
-    console.log(event.target.data);
-    if (event.target.data === "name"){
-      console.log("doing name one");
-      this.handleName(event);
-    } else {
-      console.log("doing ing one");
-      this.handleIngredients(event);
-    }
-
-  }
-
-
-  handleName(event){
-    console.log(event.target);
     this.setState({
-      name: event.target.value
-    });
-
-    console.log("name is: " + this.state.name);
-  }
-
-  handleIngredients(event){
-
-    this.setState({
-      ingredients: event.target.value
+      nameInput: event.target.value
     });
   }
+
 
   handleSubmit(event) {
-
-    let count = this.state.counter;
-    count +=1;
-
-    this.setState({
-      counter : count
+    const current = this.state.name;
+    const newName = current.concat(this.state.nameInput);
+    this.setState({ name: newName }, function(){
+      console.log(this.state.name);
     });
-    this.handlePopup();
-    console.log("final name: " + this.state.name);
-    console.log("final ing: " + this.state.ingredients);
     //this is where form adds to html (dangerously set) or deletes
     event.preventDefault();
   }
@@ -88,7 +71,7 @@ class App extends Component {
           <ContentContainer />
         </Row>
         {this.state.showPopup ?
-          <Popup text='Add a Recipe' submitForm={this.handleSubmit} name={this.state.name} ingredients={this.state.ingredients} onChange={this.handleChange}/>
+          <Popup text='Add a Recipe' submitForm={this.handleSubmit} onChange={this.handleChange}/>
           : null
         }
       </Grid>
