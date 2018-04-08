@@ -19,10 +19,25 @@ class App extends Component {
       changed: false
     };
 
+    this.saveLocally = this.saveLocally.bind(this);
     this.handleChangeName =this.handleChangeName.bind(this);
     this.handleChangeIngredients =this.handleChangeIngredients.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePopup = this.handlePopup.bind(this);
+  }
+
+  UNSAFE_componentWillMount(){
+    let saveName = JSON.parse(localStorage.getItem('saveName'));
+    console.log(saveName);
+    let saveIngredients = JSON.parse(localStorage.getItem('saveIngredients'));
+    //localStorage.clear();
+    if (saveName && saveIngredients){
+      this.setState({
+        name: saveName,
+        ingredients: saveIngredients
+      })
+    }
+
   }
 
   handlePopup() {
@@ -33,19 +48,20 @@ class App extends Component {
 
 
   handleChangeName(event){
-      this.setState({
-        nameInput: event.target.value,
-        changed: true
-      });
+      this.setState({nameInput: event.target.value, changed: true});
   }
 
   handleChangeIngredients(event){
-      this.setState({
-        ingredientsInput: event.target.value,
-        changed: true
-      });
+      this.setState({ingredientsInput: event.target.value, changed: true});
   }
 
+  saveLocally(){
+    const localName = this.state.name.slice();
+    console.log("localName: " + localName);
+    const localIngredients = this.state.ingredients.slice();
+    localStorage.setItem("saveName", JSON.stringify(localName));
+    localStorage.setItem("saveIngredients", JSON.stringify(localIngredients));
+  }
 
   handleSubmit(event) {
 
@@ -56,8 +72,9 @@ class App extends Component {
         const newIn = currentIn.concat(this.state.ingredientsInput);
 
           this.setState({ name: newName, ingredients: newIn, changed: false }, function(){
-            console.log(this.state.name);
-            console.log(this.state.ingredients);
+          //  console.log(this.state.name);
+          //  console.log(this.state.ingredients);
+            this.saveLocally();
           });
       }
 
@@ -78,7 +95,7 @@ class App extends Component {
           <AddButton onClick={this.handlePopup}/>
         </Row>
         <Row>
-          <ContentContainer />
+          <ContentContainer name={this.state.name} ingredients={this.state.ingredients}/>
         </Row>
         {this.state.showPopup ?
           <Popup text='Add a Recipe' submitForm={this.handleSubmit} nameChange={this.handleChangeName} ingredientsChange={this.handleChangeIngredients}/>

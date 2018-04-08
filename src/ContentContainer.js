@@ -7,7 +7,13 @@ export function ContentContainer(props){
     return (
         <Row className="recipeRow">
           <Col className="recipeCol" xs={12} sm={12} md={12} lg={12} xl={12}>
-            <p>Recipes go here</p>
+            <ul>
+            {
+              Object.keys(props.name).map(function(key) {
+                return <li key={key}>{props.name[key]}</li>
+              })
+            }
+            </ul>
           </Col>
         </Row>
     );
