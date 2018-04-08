@@ -16,7 +16,7 @@ class App extends Component {
       nameInput : '',
       ingredients: [],
       ingredientsInput: '',
-      counter: 0,
+      changed: false
     };
 
     this.handleChangeName =this.handleChangeName.bind(this);
@@ -33,29 +33,33 @@ class App extends Component {
 
 
   handleChangeName(event){
-    this.setState({
-      nameInput: event.target.value
-    });
+      this.setState({
+        nameInput: event.target.value,
+        changed: true
+      });
   }
 
   handleChangeIngredients(event){
-    this.setState({
-      ingredientsInput: event.target.value
-    });
+      this.setState({
+        ingredientsInput: event.target.value,
+        changed: true
+      });
   }
 
 
   handleSubmit(event) {
-    const current = this.state.name;
-    const newName = current.concat(this.state.nameInput);
 
-    const currentIn = this.state.ingredients;
-    const newIn = currentIn.concat(this.state.ingredientsInput);
+      if (this.state.changed){
+        const current = this.state.name;
+        const newName = current.concat(this.state.nameInput);
+        const currentIn = this.state.ingredients;
+        const newIn = currentIn.concat(this.state.ingredientsInput);
 
-    this.setState({ name: newName, ingredients: newIn }, function(){
-      console.log(this.state.name);
-      console.log(this.state.ingredients);
-    });
+          this.setState({ name: newName, ingredients: newIn, changed: false }, function(){
+            console.log(this.state.name);
+            console.log(this.state.ingredients);
+          });
+      }
 
     this.handlePopup();
     //this is where form adds to html (dangerously set) or deletes
