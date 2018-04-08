@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
+html{
+  height: 100%;
+}
 body{
   background: #ad5389;
   background: -webkit-linear-gradient(to top, #3c1053, #ad5389);
   background: linear-gradient(to top, #3c1053, #ad5389);
   background-repeat: no-repeat;
-  height: 100vh;
+  height: 100%;
 }
 
 .container{
@@ -20,8 +22,8 @@ body{
 
 .recipeCol{
   text-align: center;
-  background-color: #ddf2e8;
-  border: 3px solid black;
+  background-color: black;
+  //border: 3px solid #ddf2e8;
   border-radius: 3px;
   padding: 10px;
 }
@@ -129,6 +131,27 @@ form > input{
 .jumbotron{
   background-color: black;
   color: #ddf2e8;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  list-style-type: none;
+  width: 90%;
+  border:1px solid black;
+  margin: 15px auto;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #ddf2e8;
+  color: black;
+  font-size: 20px
+}
+
+li:hover{
+  background-color: #b0c1b9;
 }
 
 @media (max-width:500px) {
