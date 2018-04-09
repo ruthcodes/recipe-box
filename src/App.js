@@ -49,9 +49,16 @@ class App extends Component {
   }
 
   expandRecipe(e){
-    this.setState({
-      active: e
-    });
+    if (e === this.state.active){
+      this.setState({
+        active: ''
+      });
+    } else {
+      this.setState({
+        active: e
+      });
+    }
+
   }
 
   handleChangeName(event){
