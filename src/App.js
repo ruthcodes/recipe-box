@@ -16,7 +16,8 @@ class App extends Component {
       nameInput : '',
       ingredients: [],
       ingredientsInput: '',
-      changed: false
+      changed: false,
+      active: ''
     };
 
     this.saveLocally = this.saveLocally.bind(this);
@@ -24,6 +25,7 @@ class App extends Component {
     this.handleChangeIngredients =this.handleChangeIngredients.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePopup = this.handlePopup.bind(this);
+    this.expandRecipe = this.expandRecipe.bind(this);
   }
 
   UNSAFE_componentWillMount(){
@@ -46,6 +48,11 @@ class App extends Component {
     });
   }
 
+  expandRecipe(e){
+    this.setState({
+      active: e
+    });
+  }
 
   handleChangeName(event){
       this.setState({nameInput: event.target.value, changed: true});
@@ -57,7 +64,6 @@ class App extends Component {
 
   saveLocally(){
     const localName = this.state.name.slice();
-    console.log("localName: " + localName);
     const localIngredients = this.state.ingredients.slice();
     localStorage.setItem("saveName", JSON.stringify(localName));
     localStorage.setItem("saveIngredients", JSON.stringify(localIngredients));
@@ -95,7 +101,7 @@ class App extends Component {
           <AddButton onClick={this.handlePopup}/>
         </Row>
         <Row>
-          <ContentContainer name={this.state.name} ingredients={this.state.ingredients}/>
+          <ContentContainer name={this.state.name} ingredients={this.state.ingredients} active={this.state.active} expandRecipe={this.expandRecipe}/>
         </Row>
         {this.state.showPopup ?
           <Popup text='Add a Recipe' submitForm={this.handleSubmit} nameChange={this.handleChangeName} ingredientsChange={this.handleChangeIngredients}/>

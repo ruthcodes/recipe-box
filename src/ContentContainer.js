@@ -10,7 +10,8 @@ export function ContentContainer(props){
             <ul>
             {
               Object.keys(props.name).map(function(key) {
-                return <li key={key}>{props.name[key]}</li>
+                return <li key={key} className={props.active === key ? 'activeRecipe': null}
+                onClick={props.expandRecipe.bind(this, key)} >{props.name[key]}<br/><br/>{props.ingredients[key]}</li>
               })
             }
             </ul>
