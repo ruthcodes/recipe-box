@@ -4,5 +4,5 @@ import './bootstrap.min.css';
 import './App.css';
 
 export function AddButton(props){
-    return <Button className="add btn-primary" onClick={props.onClick}>+</Button>;
+    return <Button className="add btn-primary" onClick={props.onClick}>Add a Recipe</Button>;
 }
