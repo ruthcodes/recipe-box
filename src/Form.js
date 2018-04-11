@@ -11,10 +11,10 @@ export function Form(props) {
         <input type="text" onChange={props.nameChange} value={props.name} />
         <br/>
         Ingredients:<br/>
-        <textarea type="text" onChange={props.ingredientsChange}/>
+        <textarea type="text" onChange={props.ingredientsChange} value={props.ingredients}/>
         <Row>
           <Col className="popFoot ok" xs={0} sm={6} md={8} lg={8} xl={10}></Col>
-          <Col className="popFoot delete" xs={12} sm={6} md={4} lg={4} xl={2}><Button onClick={props.submitForm}>OK</Button><Button className="btn-danger">Delete</Button></Col>
+          <Col className="popFoot delete" xs={12} sm={6} md={4} lg={4} xl={2}><Button onClick={props.submitForm}>OK</Button></Col>
         </Row>
       </form>
     );
