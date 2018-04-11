@@ -8,7 +8,7 @@ export function Form(props) {
     return (
       <form onSubmit={props.handleSubmit}>
         Title:<br/>
-        <input type="text" onChange={props.nameChange}/>
+        <input type="text" onChange={props.nameChange} value={props.name} />
         <br/>
         Ingredients:<br/>
         <textarea type="text" onChange={props.ingredientsChange}/>

@@ -18,7 +18,8 @@ class App extends Component {
       ingredientsInput: '',
       changed: false,
       active: '',
-      editing: ''
+      action: 'Add',
+      indexToChange: 0
     };
 
     this.saveLocally = this.saveLocally.bind(this);
@@ -45,12 +46,17 @@ class App extends Component {
   }
 
   handlePopup() {
+    //if clicked add, set state to adding, if edit to editing
+    //title and buttons should depend on state
+
     this.setState({
-      showPopup: !this.state.showPopup
+      showPopup: !this.state.showPopup,
+      action: 'Add'
     });
   }
 
   expandRecipe(e){
+
 
       this.setState({
         active: e
@@ -59,10 +65,16 @@ class App extends Component {
   }
 
   handleEditing(e){
+
     this.setState({
-      editing: e
+      indexToChange: e,
+      nameInput: this.state.name[e],
+      ingredientsInput: this.state.ingredients[e],
+      action: 'Edit',
+      showPopup: true
     });
-    
+
+
   }
 
 
@@ -84,18 +96,29 @@ class App extends Component {
 
   handleSubmit(event) {
 
-      if (this.state.changed){
-        const current = this.state.name;
-        const newName = current.concat(this.state.nameInput);
-        const currentIn = this.state.ingredients;
-        const newIn = currentIn.concat(this.state.ingredientsInput);
+    var current = this.state.name;
+    var currentIn = this.state.ingredients;
 
+
+    //if editing, instead of concating newName, replace appropriate index in name array with newName
+
+      if (this.state.changed && this.state.action === "Add"){
+        //const current = this.state.name;
+        var newName = current.concat(this.state.nameInput);
+        //const currentIn = this.state.ingredients;
+        var newIn = currentIn.concat(this.state.ingredientsInput);
+      } else {
+        current[this.state.indexToChange] = this.state.nameInput;
+        var newName = current;
+        currentIn[this.state.indexToChange] = this.state.ingredientsInput;
+        var newIn = currentIn;
+      }
           this.setState({ name: newName, ingredients: newIn, changed: false }, function(){
           //  console.log(this.state.name);
           //  console.log(this.state.ingredients);
             this.saveLocally();
           });
-      }
+
 
     this.handlePopup();
     //this is where form adds to html (dangerously set) or deletes
@@ -117,7 +140,7 @@ class App extends Component {
           <ContentContainer name={this.state.name} ingredients={this.state.ingredients} active={this.state.active} expandRecipe={this.expandRecipe} handleEditing={this.handleEditing} editing={this.state.editing}/>
         </Row>
         {this.state.showPopup ?
-          <Popup text='Add a Recipe' submitForm={this.handleSubmit} nameChange={this.handleChangeName} ingredientsChange={this.handleChangeIngredients}/>
+          <Popup text={this.state.action +' a Recipe'} submitForm={this.handleSubmit} nameChange={this.handleChangeName} ingredientsChange={this.handleChangeIngredients} nameInput={this.state.nameInput}/>
           : null
         }
       </Grid>
