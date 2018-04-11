@@ -11,7 +11,7 @@ export function ContentContainer(props){
             <ul>
             {
               Object.keys(props.name).map(function(key) {
-                return <li key={key} className={props.active === key ? 'activeRecipe': null} contentEditable={props.editing === key ? 'true': false}
+                return <li key={key} className={props.active === key ? 'activeRecipe': null} 
                 onClick={props.expandRecipe.bind(this, key)} >{props.name[key]}<br/><br/>{props.ingredients[key]}<br/><br/> <Button onClick={props.handleEditing.bind(this,key)}>Edit</Button><Button className="btn-danger">Delete</Button></li>
               })
             }
