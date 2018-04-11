@@ -134,8 +134,8 @@ class App extends Component {
     //this is where form adds to html (dangerously set) or deletes
     event.preventDefault();
 
+    }
   }
-}
 
   render() {
     return (
