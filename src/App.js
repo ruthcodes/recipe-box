@@ -31,7 +31,7 @@ class App extends Component {
     this.handleRemoveRecipe = this.handleRemoveRecipe.bind(this);
   }
 
-  UNSAFE_componentWillMount(){
+  componentDidMount(){
     let saveName = JSON.parse(localStorage.getItem('saveName'));
     console.log(saveName);
     let saveIngredients = JSON.parse(localStorage.getItem('saveIngredients'));
@@ -108,29 +108,34 @@ class App extends Component {
     //if editing, instead of concating newName, replace appropriate index in name array with newName
     if (this.state.nameInput && this.state.ingredientsInput){
       if (this.state.action === "Add"){
-        //const current = this.state.name;
-        var newName = current.concat(this.state.nameInput);
-        //const currentIn = this.state.ingredients;
-        var newIn = currentIn.concat(this.state.ingredientsInput);
+        this.setState((currentState) => {
+          return {
+            name: currentState.name.concat([this.state.nameInput]),
+            ingredients: currentState.ingredients.concat([this.state.ingredientsInput]),
+            nameInput: '',
+            ingredientsInput: '',
+          }
+        })
+
       } else {
         current[this.state.indexToChange] = this.state.nameInput;
-        var newName = current;
         currentIn[this.state.indexToChange] = this.state.ingredientsInput;
-        var newIn = currentIn;
-      }
-          this.setState({ name: newName, ingredients: newIn, nameInput: '', ingredientsInput: '' }, function(){
-          //  console.log(this.state.name);
-          //  console.log(this.state.ingredients);
-            this.saveLocally();
-          });
+
+          this.setState({
+             name: current,
+             ingredients: currentIn,
+             nameInput: '',
+             ingredientsInput: ''
+           });
 
       }
+    this.saveLocally();
     this.handlePopup();
     //this is where form adds to html (dangerously set) or deletes
     event.preventDefault();
 
   }
-
+}
 
   render() {
     return (
