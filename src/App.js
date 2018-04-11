@@ -96,7 +96,9 @@ class App extends Component {
           name: currentState.name.filter((names) => names !== currentState.name[id]),
           ingredients: currentState.ingredients.filter((ingredient) => ingredient !== currentState.ingredients[id])
         }
-      })
+      },() => {
+            this.saveLocally();
+         })
   }
 
   handleSubmit(event) {
@@ -115,7 +117,10 @@ class App extends Component {
             nameInput: '',
             ingredientsInput: '',
           }
-        })
+        }, () => {
+              this.saveLocally();
+           })
+
 
       } else {
         current[this.state.indexToChange] = this.state.nameInput;
@@ -126,10 +131,12 @@ class App extends Component {
              ingredients: currentIn,
              nameInput: '',
              ingredientsInput: ''
-           });
+           }, () => {
+                this.saveLocally();
+              })
 
       }
-    this.saveLocally();
+
     this.handlePopup();
     //this is where form adds to html (dangerously set) or deletes
     event.preventDefault();
