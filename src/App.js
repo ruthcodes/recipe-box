@@ -108,7 +108,7 @@ class App extends Component {
 
 
     //if editing, instead of concating newName, replace appropriate index in name array with newName
-    if (this.state.nameInput && this.state.ingredientsInput){
+    if (this.state.nameInput || this.state.ingredientsInput){
       if (this.state.action === "Add"){
         this.setState((currentState) => {
           return {
